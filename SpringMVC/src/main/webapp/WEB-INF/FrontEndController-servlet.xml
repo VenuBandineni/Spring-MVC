@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/data/jpa
+            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+            
+          <!-- Enable JPA Repositories -->
+ <jpa:repositories base-package="com.jsp.mvc" /> 
+ <!-- Auto scanning -->
+ <context:component-scan base-package="org.jsp.mvc"/>
+            
+            <!-- Other Repositories -->
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <property name="suffix" value=".jsp"></property>
+   <property name="prefix" value="/"></property>
+</bean>
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" >
+	<property name="persistenceUnitName" value="SpringMVC"></property>
+</bean>
+<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" >
+	<property name="entityManagerFactory" ref="entityManagerFactory"></property>
+</bean>                  
+</beans>
